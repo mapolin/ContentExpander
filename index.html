@@ -5,42 +5,55 @@
     <link rel="stylesheet" href="css/grid.css" />
     <script type="text/javascript" src="js/jq.js"></script>
     <script type="text/javascript" src="js/expander.js"></script>
+    
+    <script type="text/javascript">
+        $(function() {
+            var grid = new GridContent({
+                columns: $('.grid-column'),
+                rows: $('.grid-row'),
+                items: $('.grid-item'),
+                container: $('#gridLayout')
+            });
+            
+            console.dir(grid);
+        });
+    </script>
 </head>
 <body>
     <div id="gridLayout">
         <div class="grid-column">
             <div class="grid-row">
                 <div class="grid-column grid-small">
-                    <div class="grid-item-small">1</div>
-                    <div class="grid-item-small">2</div>
-                    <div class="grid-item-small">3</div>
+                    <div class="grid-item grid-item-small">1</div>
+                    <div class="grid-item grid-item-small">2</div>
+                    <div class="grid-item grid-item-small">3</div>
                 </div>
                 <div class="grid-column grid-larger">
-                    <div class="grid-item-larger">4</div>
+                    <div class="grid-item grid-item-larger">4</div>
                 </div>
             </div>
             <div class="grid-row">
                 <div class="grid-column">
-                    <div class="grid-item-medium">5</div>
+                    <div class="grid-item grid-item-medium">5</div>
                 </div>
                 <div class="grid-column">
                     <div class="grid-row">
-                        <div class="grid-item-small-wide">6</div>
-                        <div class="grid-item-small">7</div>
+                        <div class="grid-item grid-item-small-wide">6</div>
+                        <div class="grid-item grid-item-small">7</div>
                     </div>
                     <div class="grid-row">
-                        <div class="grid-item-small">8</div>
-                        <div class="grid-item-small-wide">9</div>
+                        <div class="grid-item grid-item-small">8</div>
+                        <div class="grid-item grid-item-small-wide">9</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="grid-column grid-medium">
-            <div class="grid-item-small-wide">10</div>
-            <div class="grid-item-small">11</div>
-            <div class="grid-item-small">12</div>
-            <div class="grid-item-medium">13</div>
-            <div class="grid-item-small-wide">14</div>
+            <div class="grid-item grid-item-small-wide">10</div>
+            <div class="grid-item grid-item-small">11</div>
+            <div class="grid-item grid-item-small">12</div>
+            <div class="grid-item grid-item-medium">13</div>
+            <div class="grid-item grid-item-small-wide">14</div>
         </div>
     </div>
 </body>

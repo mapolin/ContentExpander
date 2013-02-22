@@ -1,9 +1,15 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
 #gridLayout {
     border: 1px solid #aaa;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, .3);
     background: #efefef;
     overflow: hidden;
+    position: relative;
     float: left;
+    margin: 50px 0 0 50px;
 }
 .grid-small {
     width: 150px;
