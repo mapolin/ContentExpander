@@ -1,4 +1,4 @@
-function GridContent(grid, classes) {
+function GridContent(grid, classes, delayRun) {
     if(!grid) { 
         console.error('No GRID Object provided.');
         return;
@@ -40,6 +40,9 @@ function GridContent(grid, classes) {
         return;
     }
     
+    if(delayRun) 
+        return this;
+        
     this.Initialize();
     return this;
 };
@@ -78,10 +81,10 @@ GridContent.prototype.initPositioning = function() {
     
     this.container.width(this.container.outerWidth()).height(this.container.outerHeight()).css('overflow', 'visible');
     
-    this.items.each(function(i) {
+    this.items.each(function() {
         var _self = $(this);
         var left = _self.offset().left - _this.container.offset().left;
-        var top = _self.offset().top - _this.container.offset().left;
+        var top = _self.offset().top - _this.container.offset().top;
         
         _self.css({
             'left': left,
