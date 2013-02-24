@@ -51,6 +51,12 @@ GridContent.prototype.Initialize = function() {
      },
      mouseout: function(evt) {
          _this.mouseOut($(evt.target));
+     },
+     mousedown: function(evt) {
+         if($(evt.target).data('expanded') === true)
+            _this.collapse($(evt.target));
+         else 
+            _this.expand($(evt.target));
      }
   });
 };
@@ -73,8 +79,13 @@ GridContent.prototype.initPositioning = function() {
         var top = _self.offset().top - _this.container.offset().left;
         
         _self.css({
-           'left': left,
-           'top': top
+            'left': left,
+            'top': top
+        }).data({
+            'top': top,
+            'left': left,
+            'width': _self.width(),
+            'height': _self.height()
         });
     });
     this.items.css('position', 'absolute');
@@ -91,5 +102,33 @@ GridContent.prototype.mouseOut = function(item) {
     item.css({
        'box-shadow': '0px 0px 2px rgba(0, 0, 0, .6)',
        'z-index': 5
+    });
+};
+
+GridContent.prototype.expand = function(item) {
+    var _this = this;
+    
+    item.animate({
+        'z-index': 100,
+        top: 0,
+        left: 0,
+        width: _this.container.width(),
+        height: _this.container.height()
+    }, function() {
+        item.data('expanded', true);
+    });
+};
+
+GridContent.prototype.collapse = function(item) {
+    var _this = this;
+    
+    item.animate({
+        'z-index': 5,
+        top: item.data('top'),
+        left: item.data('left'),
+        width: item.data('width'),
+        height: item.data('height')
+    }, function() {
+        item.data('expanded', false);
     });
 };
