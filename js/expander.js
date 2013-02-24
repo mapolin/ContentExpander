@@ -1,10 +1,15 @@
-function GridContent(grid) {
+function GridContent(grid, classes) {
     if(!grid) { 
         console.error('No GRID Object provided.');
         return;
     }
     
     this.grid = grid;
+    if(!classes) var classes = {};
+    this.classes = {
+        mouseover: classes.mouseover || 'grid-hover',
+        mouseout: classes.mouseout || ''
+    };
     
     var missing = 'rows|columns|items|container';
     
@@ -92,24 +97,21 @@ GridContent.prototype.initPositioning = function() {
 };
 
 GridContent.prototype.mouseOver = function(item) {
-    item.css({
-       'box-shadow': '0px 0px 10px rgba(0, 0, 0, .6)',
-       'z-index': 100
-    });
+    item
+        .removeClass(this.classes.mouseout)
+        .addClass(this.classes.mouseover);
 };
 
 GridContent.prototype.mouseOut = function(item) {
-    item.css({
-       'box-shadow': '0px 0px 2px rgba(0, 0, 0, .6)',
-       'z-index': 5
-    });
+    item
+        .removeClass(this.classes.mouseover)
+        .addClass(this.classes.mouseout);
 };
 
 GridContent.prototype.expand = function(item) {
     var _this = this;
     
-    item.animate({
-        'z-index': 100,
+    item.addClass(this.classes.mouseover).animate({
         top: 0,
         left: 0,
         width: _this.container.width(),
@@ -123,12 +125,12 @@ GridContent.prototype.collapse = function(item) {
     var _this = this;
     
     item.animate({
-        'z-index': 5,
         top: item.data('top'),
         left: item.data('left'),
         width: item.data('width'),
         height: item.data('height')
     }, function() {
         item.data('expanded', false);
+        item.removeClass(_this.classes.mouseover)
     });
 };

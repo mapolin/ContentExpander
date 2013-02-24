@@ -11,6 +11,10 @@ body, html {
     float: left;
     margin: 50px 0 0 50px;
 }
+div.grid-hover {
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, .6);
+    z-index: 100;
+}
 .grid-small {
     width: 150px;
 }
@@ -22,6 +26,9 @@ body, html {
 }
 .grid-larger {
     width: 600px;
+}
+.grid-item {
+    z-index: 5;
 }
 .grid-item-small {
     float: left;
