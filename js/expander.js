@@ -61,10 +61,10 @@ GridContent.prototype.Initialize = function() {
          _this.mouseOut($(evt.target));
      },
      mousedown: function(evt) {
-         if($(evt.target).data('expanded') === true)
-            _this.collapse($(evt.target));
+         if($(this).data('expanded') === true)
+            _this.collapse($(this));
          else 
-            _this.expand($(evt.target));
+            _this.expand($(this));
      }
   });
 };
@@ -101,12 +101,14 @@ GridContent.prototype.initPositioning = function() {
 
 GridContent.prototype.mouseOver = function(item) {
     item
+        .css('z-index', 100)
         .removeClass(this.classes.mouseout)
         .addClass(this.classes.mouseover);
 };
 
 GridContent.prototype.mouseOut = function(item) {
     item
+        .css('z-index', 5)
         .removeClass(this.classes.mouseover)
         .addClass(this.classes.mouseout);
 };
@@ -114,7 +116,7 @@ GridContent.prototype.mouseOut = function(item) {
 GridContent.prototype.expand = function(item) {
     var _this = this;
     
-    item.addClass(this.classes.mouseover).animate({
+    item.css('z-index', 100).animate({
         top: 0,
         left: 0,
         width: _this.container.width(),
@@ -128,12 +130,12 @@ GridContent.prototype.collapse = function(item) {
     var _this = this;
     
     item.animate({
+        'z-index': 5,
         top: item.data('top'),
         left: item.data('left'),
         width: item.data('width'),
         height: item.data('height')
     }, function() {
         item.data('expanded', false);
-        item.removeClass(_this.classes.mouseover)
     });
 };
